@@ -1,5 +1,7 @@
 
-## Atividade Assíncrona - Semana 2 (23/09/2020 a 29/09/2020)
+<div align='center'>
+<h1> Atividade Assíncrona - Semana 2 </h1>
+</div>
 
 **Autor: Marcos Wesley Soares Alves**
 
@@ -55,15 +57,17 @@
 
     Para verificar as máquinas que estão conectadas ao servidor, você pode usar o comando *who* ou apenas *w*.
 
-     <div align='center'>
-        <img src='img5.png'>
+    <div align='center'>
+        <img src='img5.png'>        
     </div>
 
     Através dos comandos é possível verificar que a máquina de ip 192.168.0.1 está conectado ao servidor.
 
     Aprendemos nessa seção como instalar e nos conectar a um servidor via ssh(Secure Shell). Porém devemos tomar cuidado com algumas configurações de acesso como por exemplo a porta e o usuário ao qual estamos nos conectando, pois isso pode causar diversos problemas de segurança. Esse será o assunto do próximo tópico.
 
-   
+</br></br></br></br>
+
+
 ## Alterando arquivo de configuração do SSH
 
 Por questões de segurança algumas configuração devem ser realizadas para dificultar um pouco o acesso ao nosso servidor via ssh. Nesse tópico vamos bloquear o acesso ao usuário root e mudar a porta padrão de acesso.
@@ -117,11 +121,11 @@ Usando o usuário *servidor* e passando a porta 2222 conseguimos realizar a cone
 
 Neste tópico será abordado a cópia de arquivos do servidor para o cliente. Podemos fazer essa transferência via rede usando o scp via terminal ou através de programas como gftp ou o filezilla caso esteja disponível um ambiente gráfico.
 
-- **Sem ambiente gráfico (SCP)**
+- **Sem interface gráfica (SCP)**
 
 O SCP (Secure Copy) é um protocolo de rede para transferências de arquivos. Esse protocolo que iremos usar nesse exemplo
 
-Passo 1: Criar um arquivo(file_teste) no servidor.
+**Passo 1:** Criar um arquivo(file_teste) no servidor.
 
     touch arquivo_teste
 
@@ -131,7 +135,7 @@ Passo 1: Criar um arquivo(file_teste) no servidor.
 
 Com o arquivo criado vamos copiá-lo para o cliente1.
 
-Passo 2: Cópia do arquivo através da rede
+**Passo 2:** Cópia do arquivo através da rede
 
 Para copiar o arquivo temos que saber o caminho onde ele se encontra na origem (servidor) e para qual caminho queremos salvar no destino(cliente). No nosso caso o path de origem é: */home/servidor* e o path de destino é: *home/cliente1*. Então usando o scp vamos conectar ao servidor e realizar a cópia do arquivo.
 
@@ -144,7 +148,99 @@ Para copiar o arquivo temos que saber o caminho onde ele se encontra na origem (
 
 Como podemos observar através do comando *ls* o arquivo agora está na máquina cliente1.
 
--**Utilizando a interface gráfica (gftp)**
+- **Utilizando a interface gráfica (gftp)**
 
-## Observações:
- - Mostrar na prática o uso do winscp e putty
+Para esse exemplo vamos usar o cliente 2 que tem interface gráfica. Para realizar a instalação da ferramenta gftp tivemos que modificar as configurações de rede para que fosse possível acessar a internet e baixar os pacotes necessários. Para isso editamos o arquivo *interfaces* e através da opção *Configurações de rede* da máquina virtual alteramos a opção de rede interna para NAT.
+
+
+*Configurações originais*
+<div align='center'>
+    <img src='img14.png' height='310px' width='450px'>
+</div>
+
+*Configurações para instalação do gftp*
+<div align='center'>
+    <img src='img15.png'>
+</div>
+
+Obs: Para alterar o arquivo interfaces você deve usar o usuário root. Para isso basta digitar *su* no terminal e informar a senha do usuário root.
+
+Após a modificação do arquivo interfaces, digite os seguintes comandos para aplicar as configurações a interface de rede.
+
+    ifdow enp0s3 ou /sbin/ifdown enp0s3
+    ifup enp0s3 ou /sbin/ifup enp0s3
+
+
+<div align='center'>
+    <img src='img16.png'>
+</div>
+
+**1 - Instalação**
+
+Agora podemos fazer a instalação da ferramenta através dos comandos abaixo
+
+    apt-get install update
+    apt-get install gftp
+
+Ao fim da instalação você pode acessar a aplicação através do *menu -> internet -> gftp*
+
+<div align='center'>
+    <img src='img17.png'>
+</div>
+
+**2 - Realizando a cópia de uma arquivo do servidor**
+
+Para realizar a cópia de uma arquivo primeiro vamos desfazer as alterações que realizamos no arquivo interfaces e voltado a configuração na nossa máquina para *rede interna*.
+
+<div align='center'>
+    <img src='img14.png'>
+</div>
+
+    ifdow enp0s3 ou /sbin/ifdown enp0s3
+    ifup enp0s3 ou /sbin/ifup enp0s3
+
+Com as cofigurações originais setadas, podemos acessar o servidor via protocolo SSH. Vamos iniciar nossa aplicação *gftp*.
+
+<div align='center'>
+    <img src='img18.png'>
+</div>
+
+Na imagem podemos observar três áreas:
+
+A área *vermelha* é onde vamos adicionar as informações para acessar o servidor, o ip da máquina a porta o usuário ao qual queremos nos conectar e o protocolo a ser usado.
+
+A área *azul* são os diretórios da nossa máquina.
+
+E a área *verde* é onde serão apresentados os diretório do servidor assim que a conexão estiver estabelecida.
+
+Credenciais de acesso:
+
+    IP: 192.168.0.254
+    Porta: 2222
+    Usuário: servidor
+    Protocolo: SSH2
+</br></br></br></br></br></br>
+Ao acessar o servidor pela primeira vez, será mostrado a mensagem abaixo, então basta selecionar a opção *sim*.
+
+<div align='center'>
+    <img src='img19.png'>
+</div>
+
+Podemos obsevar na aba da direita alguns arquivos no diretório */home/servidor*.
+
+<div align='center'>
+    <img src='img20.png'>
+</div>
+
+Vamos então copiar o arquivo *arquivo_teste* do servidor para o diretório */home/cliente2/Desktop*.
+
+**Passo 1:** Selecione na aba do servidor o arquivos que deseja copiar
+
+**Passo 2:** Clique na seta para a esquerda.
+
+<div align='center'>
+    <img src='img21.png'>
+</div>
+
+
+Pronto, o seu arquivo foi copiado do servidor para a máquina cliente2. Existem diversas outras ferramentas com interface gráfica como o *gftp* como o filezilla também para linux e o winscp para windows. 
