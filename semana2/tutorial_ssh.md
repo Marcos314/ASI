@@ -244,3 +244,38 @@ Vamos então copiar o arquivo *arquivo_teste* do servidor para o diretório */ho
 
 
 Pronto, o seu arquivo foi copiado do servidor para a máquina cliente2. Existem diversas outras ferramentas com interface gráfica como o *gftp* como o filezilla também para linux e o winscp para windows. 
+
+A nível de curiosidade irei apresentar um pouco do *winSCP* e o *putty* que uso no dia a dia no trabalho.
+
+
+
+## WinScp e Putty
+
+No meu trabalho no IPEA usamos máquinas com sistema operacional windows, porém muitos dos servidores são linux. Então usamos algumas ferramentas como o *putty* e o *winscp* para acessar alguns servidores para dar permissão a um usuário ou acessar determinada aplicação. Abaixo segue algumas imagens dessas aplicações.
+
+- **Putty**
+
+<div align='center'>
+    <img src='img22.png'>
+</div>
+
+Após informar as credenciais de acesso (que por questão de segurança e contrato não vou poder mostrar) já estou acessando o servidor que desejo via terminal.
+
+<div align='center'>
+    <img src='img23.png'>
+</div>
+
+Em verde podemos verificar o ultimo acesso que foi da minha máquina de tabalho *ebsb0460*.
+
+- **WinSCP**
+
+Uso bastante essa ferramenta para acessar aplicações em ambiente de desenvolvimento, realizar manutenção em códigos e então solicitar o envio pro ambiente de homologação e posteriormente para o ambiente de produção. A transferência dos arquivos é realizado pela equipe de rede que usa o putty para realizar as cópias de um ambiente para o outro.
+
+<div align='center'>
+    <img src='img24.png' height='300px'>
+</div>
+
+
+<div align='center'>
+    <img src='img25.png'>
+</div>
